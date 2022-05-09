@@ -103,13 +103,13 @@ def convert_data(input_filename, output_filename):
     # Opening files for writing
     for i, measurement in enumerate(measurements):
         if(verbose):
-            print(f'[Info][{i+1}/{len(measurements)}] Opening file "{output_filename}_{i:02d}.csv"')
-        with open(os.path.join("data", f'{output_filename}_{i:02d}.csv'), "w") as file:
+            print(f'[Info][{i+1}/{len(measurements)}] Opening file "{output_filename}_{i+1:02d}.csv"')
+        with open(os.path.join("data", f'{output_filename}_{i+1:02d}.csv'), "w") as file:
             
             # Writing the data
             for j, e in enumerate(measurement):
                 if(verbose):
-                    print(f'[Info][{i+1}/{len(measurements)}][{j+1}/{len(measurement)}] Writing file "{output_filename}_{i:02d}.csv"', end="\r")
+                    print(f'[Info][{i+1}/{len(measurements)}][{j+1}/{len(measurement)}] Writing file "{output_filename}_{i+1:02d}.csv"', end="\r")
                 file.write(f'{e[0]}; {e[1]}; {e[2]}; {e[3]}; {e[4]}; {e[5]}; {e[6]}\n')
             if(verbose):
                 print("")
