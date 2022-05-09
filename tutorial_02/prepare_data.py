@@ -21,13 +21,12 @@
 # import random as r
 # import re
 import os
-from tkinter.tix import INTEGER
 
 
 # -----------------------------------------------------------------------------
 # Debugging-Settings
 
-verbose = True  # Shows more debugging information
+verbose = False  # Shows more debugging information
 
 
 # Functions
@@ -114,9 +113,6 @@ def convert_data(input_filename, output_filename):
                 file.write(f'{e[0]}; {e[1]}; {e[2]}; {e[3]}; {e[4]}; {e[5]}; {e[6]}\n')
             if(verbose):
                 print("")
-                
-            
-
 
 
 # Classes
