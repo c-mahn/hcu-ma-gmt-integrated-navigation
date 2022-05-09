@@ -21,6 +21,7 @@
 # import random as r
 # import re
 import os
+from tkinter.tix import INTEGER
 
 
 # -----------------------------------------------------------------------------
@@ -68,28 +69,55 @@ def convert_data(input_filename, output_filename):
             data[i] = e.split(';')
             for j, e in enumerate(data[i]):
                 if(verbose):
-                    print(f'[Info][{i}/{len(data)}][{j}/{len(data[i])}] Converting entries', end="\r")
+                    print(f'[Info][{i+1}/{len(data)}][{j+1}/{len(data[i])}] Converting entries', end="\r")
                 if(j==0):
                     data[i][j] = int(e.strip())
                 else:
                     data[i][j] = float(e.strip())
         except(ValueError):
             if(verbose):
-                print(f'[Info] Detected file header at line {i}{20*" "}')
+                print(f'[Info] Detected file header at line {i+1}{20*" "}')
     if(verbose):
-        print(f'[Info][{len(data)}/{len(data)}][{len(data[i])}/{len(data[i])}] Converting entries')
+        print("")
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Splitting data into multiple lists for individual measurements
 
-    
+    measurements = []
+
+    for i, e in enumerate(data):
+        if(verbose):
+            print(f'[Info][{i+1}/{len(data)}] Splitting measurements', end="\r")
+        if(e[0]=="TIME"):
+            measurements.append([])
+        else:
+            measurements[-1].append(e)
+    if(verbose):
+        print("")
+        
 
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Export of converted measurements
-
     
+    # Opening files for writing
+    for i, measurement in enumerate(measurements):
+        if(verbose):
+            print(f'[Info][{i+1}/{len(measurements)}] Opening file "{output_filename}_{i:02d}.csv"')
+        with open(os.path.join("data", f'{output_filename}_{i:02d}.csv'), "w") as file:
+            
+            # Writing the data
+            for j, e in enumerate(measurement):
+                if(verbose):
+                    print(f'[Info][{i+1}/{len(measurements)}][{j+1}/{len(measurement)}] Writing file "{output_filename}_{i:02d}.csv"', end="\r")
+                file.write(f'{e[0]}; {e[1]}; {e[2]}; {e[3]}; {e[4]}; {e[5]}; {e[6]}\n')
+            if(verbose):
+                print("")
+                
+            
+
+
 
 # Classes
 # -----------------------------------------------------------------------------
