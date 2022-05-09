@@ -33,6 +33,8 @@ verbose = True  # Shows more debugging information
 # -----------------------------------------------------------------------------
 
 def convert_data(input_filename, output_filename):
+    if(verbose):
+        print(f'[Info] Converting {input_filename}')
     """
     This function takes the data from the file and converts it in a standard
     format for later processing.
@@ -43,40 +45,51 @@ def convert_data(input_filename, output_filename):
                                 split and converted into. The different files
                                 will be appended with "_01", "_02" and so on.
     """
-    
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
     # Import of measurements
-'''     file = open(os.path.join("data", input_filename))
-    data = file.readlines()
-    file.close()
-    data.pop(0)
-    for i, e in enumerate(data):
+
+    if(verbose):
+        print(f'[Info] Opening file "{input_filename}"', end="\r")
+    with open(os.path.join("data", input_filename)) as file:
         if(verbose):
-            print(f"[{i+1}/{len(data)}] Import", end="\r")
-        if(e[0] != "/"):
-            data[i] = e.strip().split(",")
-            temp = []
-            for j, f in enumerate(data[i]):
-                if(j == 0):
-                    temp.append(int(f)/int(Hz))  # Berechnung der Timestamps
+            print(f'[Info] Reading file "{input_filename}"', end="\r")
+        data = file.readlines()
+    if(verbose):
+        print(f'[Info] Read file "{input_filename}" successfully')
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Converting strings to integers and floats
+
+    for i, e in enumerate(data):
+        try:
+            data[i] = e.split(';')
+            for j, e in enumerate(data[i]):
+                if(verbose):
+                    print(f'[Info][{i}/{len(data)}][{j}/{len(data[i])}] Converting entries', end="\r")
+                if(j==0):
+                    data[i][j] = int(e.strip())
                 else:
-                    temp.append(float(f))
-            data[i] = temp '''
+                    data[i][j] = float(e.strip())
+        except(ValueError):
+            if(verbose):
+                print(f'[Info] Detected file header at line {i}{20*" "}')
+    if(verbose):
+        print(f'[Info][{len(data)}/{len(data)}][{len(data[i])}/{len(data[i])}] Converting entries')
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
+
+    # Splitting data into multiple lists for individual measurements
+
+    
+
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Export of converted measurements
-'''     file = open(os.path.join("data", output_filename),f"w")
-    for i, e in enumerate(data):
-        if(verbose):
-            print(f"[{i+1}/{len(data)}] Export", end="\r")
-        for j, f in enumerate(e):
-            if(j == 0):
-                file.writelines(f"{f}")
-            else:
-                file.writelines(f"; {f}")
-        file.writelines(f"\n")
-    file.close()
-    if(verbose):
-        print(f"[{i+1}/{len(data)}] Done  ") '''
 
+    
 
 # Classes
 # -----------------------------------------------------------------------------
@@ -86,4 +99,5 @@ def convert_data(input_filename, output_filename):
 # -----------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    pass
+    convert_data("rotation_groupE.txt", "data_rotation")
+    convert_data("track_groupE.txt", "data_track")

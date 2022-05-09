@@ -23,8 +23,25 @@
 # import re
 import os
 
+
+# -----------------------------------------------------------------------------
+# Debugging-Settings
+
+verbose = True  # Shows more debugging information
+
 # Functions
 # -----------------------------------------------------------------------------
+
+def run_script(script_name):
+    """
+    This function executes python scripts via the command line.
+
+    Args:
+        script_name (str): name of the python script (eg: "demo.py")
+    """
+    if(verbose):
+        print(f'[Info] Executing "{script_name}"')
+    os.system(f'python3 {script_name}')
 
 
 # Classes
@@ -35,5 +52,5 @@ import os
 # -----------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    os.system(f"python3 prepare_data.py")
-    # os.system(f"python3 x.py")
+    run_script("prepare_data.py")
+    run_script("x.py")
