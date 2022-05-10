@@ -41,7 +41,7 @@ def convert_data(input_filename, output_filename):
 
     Args:
         input_filename (str): name of the file that will be converted
-        output_filenames (str): the name of the output files the data will be
+        output_filename (str): the name of the output files the data will be
                                 split and converted into. The different files
                                 will be appended with "_01", "_02" and so on.
     """
