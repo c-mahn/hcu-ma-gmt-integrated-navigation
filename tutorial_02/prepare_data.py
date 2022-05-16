@@ -26,7 +26,7 @@ import os
 # -----------------------------------------------------------------------------
 # Debugging-Settings
 
-verbose = False  # Shows more debugging information
+verbose = True  # Shows more debugging information
 
 
 # Functions

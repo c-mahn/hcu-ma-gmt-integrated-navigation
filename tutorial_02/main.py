@@ -41,7 +41,9 @@ def run_script(script_name):
     """
     if(verbose):
         print(f'[Info] Executing "{script_name}"')
-    os.system(f'python3 {script_name}')
+    #os.system(f'python3 {script_name}')
+    os.system(f'C:/Users/wolfj/anaconda3/python.exe {script_name}')
+    
 
 
 # Classes
@@ -53,4 +55,4 @@ def run_script(script_name):
 
 if __name__ == '__main__':
     run_script("prepare_data.py")
-    run_script("x.py")
+    run_script("mems.py")
