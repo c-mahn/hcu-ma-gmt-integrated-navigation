@@ -46,7 +46,20 @@ verbose = True  # Shows more debugging information
 #               {"start": 0, "end": 390},
 #               {"start": 0, "end": 350},
 #               {"start": 0, "end": 200}]
-stationary = [{"start": 452, "end": 2574},
+stationary = [{"start": 15, "end": 710},
+              {"start": 7, "end": 597},
+              {"start": 11, "end": 485},
+              {"start": 7, "end": 522},
+              {"start": 7, "end": 250},
+              {"start": 16, "end": 300},
+              {"start": 16, "end": 509},
+              {"start": 34, "end": 548},
+              {"start": 14, "end": 556},
+              {"start": 23, "end": 432},
+              {"start": 0, "end": 0},
+              {"start": 17, "end": 576},   # These are the parts in which the
+              {"start": 23, "end": 392}]  # IMU was stationary while measuring
+stationary_rotation = [{"start": 452, "end": 2574},
               {"start": 38, "end": 1427},
               {"start": 24, "end": 768},
               {"start": 17, "end": 589},
@@ -57,7 +70,7 @@ stationary = [{"start": 452, "end": 2574},
               {"start": 10, "end": 818},
               {"start": 9, "end": 389},
               {"start": 6, "end": 354},   # These are the parts in which the
-              {"start": 6, "end": 202}]  # IMU was stationary while measuring
+              {"start": 6, "end": 202}]  # IMU was stationary while measuring              
 
 
 # Functions
@@ -143,9 +156,31 @@ def write_bias(bias_data, filename, measurement):
         print(f'[Info] Writing biases of measurement {measurement} to "{filename}.txt"')
     with open(os.path.join("data", f'{filename}.txt'), "a") as file:
         file.write(f'The following biases were determined for measurement "{measurement}":\n')
-        file.write(f'X: {bias_data[0]:.6f} m/s²\n')
-        file.write(f'Y: {bias_data[1]:.6f} m/s²\n')
-        file.write(f'Z: {bias_data[2]:.6f} m/s²\n')
+        file.write(f'X: {bias_data[0]:.6f} m/s^2\n')
+        file.write(f'Y: {bias_data[1]:.6f} m/s^2\n')
+        file.write(f'Z: {bias_data[2]:.6f} m/s^2\n')
+        file.write(f'{15*"- "}-\n\n')
+
+def write_bias_rotation(bias_data, filename, measurement):
+    """
+    This funtion writes the bias of the measurements to a file on disk.
+
+    Args:
+        bias_data ([float]): The bias of the data must be formatted in
+                          [x, y, z] and the unit of measurement must be m/s²
+        filename (str): This is the filename under wich the data will be
+                        appended to.
+        measurement (str): This specifies the description of the measurement
+                           and will be printed only for user-friendlyness
+                           purposes
+    """
+    if(verbose):
+        print(f'[Info] Writing biases of measurement {measurement} to "{filename}.txt"')
+    with open(os.path.join("data", f'{filename}.txt'), "a") as file:
+        file.write(f'The following biases were determined for measurement "{measurement}":\n')
+        file.write(f'X: {bias_data[0]:.6f} degree/s\n')
+        file.write(f'Y: {bias_data[1]:.6f} degree/s\n')
+        file.write(f'Z: {bias_data[2]:.6f} degree/s\n')
         file.write(f'{15*"- "}-\n\n')
 
 def plot_data(datenreihen, timestamps=None, name=["Messwerte"]):
@@ -155,10 +190,7 @@ def plot_data(datenreihen, timestamps=None, name=["Messwerte"]):
     for i, datenreihe in enumerate(datenreihen):
         if(timestamps==None):
             timestamps = range(len(datenreihe))
-        if(i == 0):
-            plt.plot(timestamps, datenreihe, "o")
-        else:
-            plt.plot(timestamps, datenreihe)
+        plt.plot(timestamps, datenreihe)
     plt.legend(name)
     plt.grid()
     plt.xlabel("")
@@ -232,10 +264,65 @@ def calc_position(accelerometer_data, timestamp_data, velocity_data):
             else:
                 position_i[xyz] += 0.5*accelerometer_data[xyz][i]*((e-timestamp_data[i-1])**2)+velocity_data[xyz][i]*(e-timestamp_data[i-1])
             position[xyz].append(position_i[xyz])
-    if(verbose):
-        print("")
+    # if(verbose):
+    #     print("")
     return(position)
 
+
+def calc_turnrates(gyroscope_data, timestamp_data):
+    """
+    This function calculates the rotation based on velocity-data and timestamps.
+
+    Args:
+        gyroscope_data ([{"x": float, "y": float, "z": float}]):     his is the gyroscope-data
+                                                                     and must be formatted as dictionaries
+                                                                     inside of a list
+        timestamp_data ([float]): This is timestamp-data for the velocity-data
+    """
+    turnrates = {"x": [], "y": [], "z": []}
+    turnrates_i = {"x": 0.0, "y": 0.0, "z": 0.0}
+    for i, e in enumerate(timestamp_data):
+        for j, xyz in enumerate(["x", "y", "z"]):
+            if(verbose):
+                print(f'[Info][{i+1}/{len(timestamp_data)}][{j+1}/3] Calculating turnrates', end="\r")
+            if(i==0):
+                turnrates_i[xyz] += gyroscope_data[xyz][i]*e
+            else:
+                turnrates_i[xyz] += gyroscope_data[xyz][i]*(e-timestamp_data[i-1])
+            turnrates[xyz].append(turnrates_i[xyz])
+    # if(verbose):
+    #     print("")
+    return(turnrates)
+
+def calc_distances(positions):
+    """
+    This function calculates the rotation based on velocity-data and timestamps.
+
+    Args:
+        gyroscope_data ([{"x": float, "y": float, "z": float}]):     his is the gyroscope-data
+                                                                     and must be formatted as dictionaries
+                                                                     inside of a list
+        timestamp_data ([float]): This is timestamp-data for the velocity-data
+    """
+    delta = []
+    for xyz in ["x", "y", "z"]:
+        delta.append((positions[xyz][-1]-positions[xyz][0])**2)
+    distance = np.sqrt(delta[0]+delta[1]+delta[2])
+    # if(verbose):
+    #     print("")
+    return(distance)
+
+def write_distances(distances, filename, measurement):
+    """
+    This funtion writes the distances of the measurements to a file on disk.
+
+    """
+    if(verbose):
+        print(f'[Info] Writing distances of measurement {measurement} to "{filename}.txt"')
+    with open(os.path.join("data", f'{filename}.txt'), "a") as file:
+        file.write(f'The following distance was determined for measurement "{measurement}":')
+        file.write(f'X: {distances:.6f} m\n')
+        file.write(f'{15*"- "}-\n\n')
 
 
 # Classes
@@ -247,13 +334,15 @@ def calc_position(accelerometer_data, timestamp_data, velocity_data):
 
 if __name__ == '__main__':
     
-    # Clear the file of any content
+    # Clear the biases-file of any content
     with open(os.path.join("data", "biases.txt"), "w") as file:
+        file.write("")
+    with open(os.path.join("data", "distances.txt"), "w") as file:
         file.write("")
 
     # Iterating over several measurements the data get's processed
-    for measurement_id in range(12):
-        data = import_data(f'data_rotation_{measurement_id+1:02d}.csv')
+    for measurement_id in range(13):
+        data = import_data(f'data_track_{measurement_id+1:02d}.csv')
 
         # Putting the data into sensor-streams as lists
         accelerometer = {"x": [], "y": [], "z": []}
@@ -268,7 +357,7 @@ if __name__ == '__main__':
         # Plotting the sensor-information for determinating the stationary
         # parts during measurement
         # plot_data([accelerometer["x"], accelerometer["y"], accelerometer["z"],
-        #            gyroscope["x"], gyroscope["y"], gyroscope["z"]], timestamp,
+        #            gyroscope["x"], gyroscope["y"], gyroscope["z"]], None,
         #           ["acc_x", "acc_y", "acc_z", "gyro_x", "gyro_y", "gyro_z"])
         
         # Calculating the biases for the accelerometer
@@ -284,11 +373,61 @@ if __name__ == '__main__':
             norm_acc[i] = int_acc(accelerometer[i], bias[i])
 
         # Plotting the normalised values
-        # plot_data([norm_acc["x"], norm_acc["y"], norm_acc["z"]])
+        # plot_data([norm_acc["x"], norm_acc["y"], norm_acc["z"]], None, ["acc_x", "acc_y", "acc_z"])
 
         velocities = calc_velocity(norm_acc, timestamp)
         positions = calc_position(norm_acc, timestamp, velocities)
 
         # Plotting the integrated values
-        # plot_data([velocities["x"], velocities["y"], velocities["z"]])
-        # plot_data([positions["x"], positions["y"], positions["z"]], timestamp)
+        # plot_data([velocities["x"], velocities["y"], velocities["z"]], None, ["velocitie_x", "velocitie_y", "velocitie_z"])
+        # plot_data([positions["x"], positions["y"], positions["z"]], timestamp, ["position_x", "position_y", "position_z"])
+
+        distances = calc_distances(positions)
+        write_distances(distances, "distances", f'{measurement_id+1:02d}')
+        if(verbose):
+            print("")
+
+    # Clear the biases-file of any content
+    with open(os.path.join("data", "biases_rotation.txt"), "w") as file:
+        file.write("")
+
+    # Iterating over several measurements the data get's processed
+    for measurement_id_rotation in range(12):
+        data_rotation = import_data(f'data_rotation_{measurement_id_rotation+1:02d}.csv')
+
+        # Putting the data into sensor-streams as lists
+        accelerometer_rotation = {"x": [], "y": [], "z": []}
+        gyroscope_rotation = {"x": [], "y": [], "z": []}
+        timestamp_rotation = []
+        for sensor_info_rotation in data_rotation:
+            timestamp_rotation.append(sensor_info_rotation[0]/1000)
+            for i, e in enumerate(["x", "y", "z"]):
+                accelerometer_rotation[e].append(sensor_info_rotation[i+1])
+                gyroscope_rotation[e].append(sensor_info_rotation[i+4])
+
+        # Plotting the sensor-information for determinating the stationary
+        # parts during measurement
+        # plot_data([accelerometer_rotation["x"], accelerometer_rotation["y"], accelerometer_rotation["z"],
+        #            gyroscope_rotation["x"], gyroscope_rotation["y"], gyroscope_rotation["z"]], None,
+        #           ["acc_x", "acc_y", "acc_z", "gyro_x", "gyro_y", "gyro_z"])
+        
+        # Calculating the biases for the accelerometer
+        bias_rotation = {"x": 0.0, "y": 0.0, "z": 0.0}
+        for i in ["x", "y", "z"]:
+            bias_rotation[i] = bias_det(gyroscope_rotation[i],
+                               stationary_rotation[measurement_id_rotation]["start"],
+                               stationary_rotation[measurement_id_rotation]["end"])
+        write_bias_rotation([bias_rotation["x"], bias_rotation["y"], bias_rotation["z"]], "biases_rotation", f'{measurement_id_rotation+1:02d}')
+        
+        norm_acc_rotation = {"x": [], "y": [], "z": []}
+        for i in ["x", "y", "z"]:
+            norm_acc_rotation[i] = int_acc(gyroscope_rotation[i], bias_rotation[i])
+    
+        # Plotting the normalised values
+        # plot_data([norm_acc_rotation["x"], norm_acc_rotation["y"], norm_acc_rotation["z"]], None, ["gyro_x", "gyro_y", "gyro_z"])
+
+        turnrates = calc_turnrates(norm_acc_rotation, timestamp_rotation)
+        if(verbose):
+            print("\n")
+        # Plotting the integrated values
+        # plot_data([turnrates["x"], turnrates["y"], turnrates["z"]], None, ["turnrate_x", "turnrate_y", "turnrate_z"])

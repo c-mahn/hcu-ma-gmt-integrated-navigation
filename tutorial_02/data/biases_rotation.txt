@@ -1,78 +1,72 @@
 The following biases were determined for measurement "01":
-X: 0.719079 m/s^2
-Y: 0.225381 m/s^2
-Z: -9.702532 m/s^2
+X: -0.116706 degree/s
+Y: -1.155061 degree/s
+Z: 0.024020 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "02":
-X: 0.730915 m/s^2
-Y: 0.218831 m/s^2
-Z: -9.698305 m/s^2
+X: -0.115119 degree/s
+Y: -1.167531 degree/s
+Z: 0.038265 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "03":
-X: 0.729114 m/s^2
-Y: 0.218586 m/s^2
-Z: -9.695570 m/s^2
+X: -0.122728 degree/s
+Y: -1.170632 degree/s
+Z: 0.043562 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "04":
-X: 0.730388 m/s^2
-Y: 0.216194 m/s^2
-Z: -9.696718 m/s^2
+X: -0.128357 degree/s
+Y: -1.173112 degree/s
+Z: 0.038094 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "05":
-X: 0.728807 m/s^2
-Y: 0.215350 m/s^2
-Z: -9.693128 m/s^2
+X: -0.116413 degree/s
+Y: -1.167934 degree/s
+Z: 0.030248 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "06":
-X: 0.729261 m/s^2
-Y: 0.214366 m/s^2
-Z: -9.693451 m/s^2
+X: -0.118006 degree/s
+Y: -1.171238 degree/s
+Z: 0.034502 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "07":
-X: 0.728256 m/s^2
-Y: 0.216369 m/s^2
-Z: -9.696187 m/s^2
+X: -0.116917 degree/s
+Y: -1.182105 degree/s
+Z: 0.030075 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "08":
-X: 0.728911 m/s^2
-Y: 0.214144 m/s^2
-Z: -9.695798 m/s^2
+X: -0.124115 degree/s
+Y: -1.174545 degree/s
+Z: 0.027177 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "09":
-X: 0.729262 m/s^2
-Y: 0.215646 m/s^2
-Z: -9.694539 m/s^2
+X: -0.114864 degree/s
+Y: -1.175854 degree/s
+Z: 0.031955 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "10":
-X: 0.731638 m/s^2
-Y: 0.210782 m/s^2
-Z: -9.694572 m/s^2
+X: -0.122711 degree/s
+Y: -1.181737 degree/s
+Z: 0.038421 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "11":
-X: nan m/s^2
-Y: nan m/s^2
-Z: nan m/s^2
+X: -0.122730 degree/s
+Y: -1.194023 degree/s
+Z: 0.038793 degree/s
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "12":
-X: 0.727531 m/s^2
-Y: 0.214275 m/s^2
-Z: -9.693631 m/s^2
-- - - - - - - - - - - - - - - -
-
-The following biases were determined for measurement "13":
-X: 0.730027 m/s^2
-Y: 0.208780 m/s^2
-Z: -9.693333 m/s^2
+X: -0.127602 degree/s
+Y: -1.185918 degree/s
+Z: 0.053316 degree/s
 - - - - - - - - - - - - - - - -
 

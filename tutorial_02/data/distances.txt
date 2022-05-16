@@ -1,0 +1,39 @@
+The following distance was determined for measurement "01":X: 17.500356 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "02":X: 8.951084 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "03":X: 17.937796 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "04":X: 6.985164 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "05":X: 5.706321 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "06":X: 15.729561 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "07":X: 10.592606 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "08":X: 9.860292 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "09":X: 22.343545 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "10":X: 11.856130 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "11":X: nan m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "12":X: 7.651909 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "13":X: 24.518143 m
+- - - - - - - - - - - - - - - -
+
