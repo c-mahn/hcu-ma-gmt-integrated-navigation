@@ -1,72 +1,72 @@
 The following biases were determined for measurement "01":
-X: -0.116706 m/sÂ²
-Y: -1.155061 m/sÂ²
-Z: 0.024020 m/sÂ²
+X: -0.116706 m/s²
+Y: -1.155061 m/s²
+Z: 0.024020 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "02":
-X: -0.115119 m/sÂ²
-Y: -1.167531 m/sÂ²
-Z: 0.038265 m/sÂ²
+X: -0.115119 m/s²
+Y: -1.167531 m/s²
+Z: 0.038265 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "03":
-X: -0.122728 m/sÂ²
-Y: -1.170632 m/sÂ²
-Z: 0.043562 m/sÂ²
+X: -0.122728 m/s²
+Y: -1.170632 m/s²
+Z: 0.043562 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "04":
-X: -0.128357 m/sÂ²
-Y: -1.173112 m/sÂ²
-Z: 0.038094 m/sÂ²
+X: -0.128357 m/s²
+Y: -1.173112 m/s²
+Z: 0.038094 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "05":
-X: -0.116413 m/sÂ²
-Y: -1.167934 m/sÂ²
-Z: 0.030248 m/sÂ²
+X: -0.116413 m/s²
+Y: -1.167934 m/s²
+Z: 0.030248 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "06":
-X: -0.118006 m/sÂ²
-Y: -1.171238 m/sÂ²
-Z: 0.034502 m/sÂ²
+X: -0.118006 m/s²
+Y: -1.171238 m/s²
+Z: 0.034502 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "07":
-X: -0.116917 m/sÂ²
-Y: -1.182105 m/sÂ²
-Z: 0.030075 m/sÂ²
+X: -0.116917 m/s²
+Y: -1.182105 m/s²
+Z: 0.030075 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "08":
-X: -0.124115 m/sÂ²
-Y: -1.174545 m/sÂ²
-Z: 0.027177 m/sÂ²
+X: -0.124115 m/s²
+Y: -1.174545 m/s²
+Z: 0.027177 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "09":
-X: -0.114864 m/sÂ²
-Y: -1.175854 m/sÂ²
-Z: 0.031955 m/sÂ²
+X: -0.114864 m/s²
+Y: -1.175854 m/s²
+Z: 0.031955 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "10":
-X: -0.122711 m/sÂ²
-Y: -1.181737 m/sÂ²
-Z: 0.038421 m/sÂ²
+X: -0.122711 m/s²
+Y: -1.181737 m/s²
+Z: 0.038421 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "11":
-X: -0.122730 m/sÂ²
-Y: -1.194023 m/sÂ²
-Z: 0.038793 m/sÂ²
+X: -0.122730 m/s²
+Y: -1.194023 m/s²
+Z: 0.038793 m/s²
 - - - - - - - - - - - - - - - -
 
 The following biases were determined for measurement "12":
-X: -0.127602 m/sÂ²
-Y: -1.185918 m/sÂ²
-Z: 0.053316 m/sÂ²
+X: -0.127602 m/s²
+Y: -1.185918 m/s²
+Z: 0.053316 m/s²
 - - - - - - - - - - - - - - - -
 
