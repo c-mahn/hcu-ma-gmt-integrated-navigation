@@ -19,6 +19,7 @@
 # import string as st
 # import random as r
 # import re
+from turtle import position
 import matplotlib.pyplot as plt
 # from scipy import interpolate
 import numpy as np
@@ -147,16 +148,17 @@ def write_bias(bias_data, filename, measurement):
         file.write(f'Z: {bias_data[2]:.6f} m/s²\n')
         file.write(f'{15*"- "}-\n\n')
 
-def plot_data(datenreihen, name=["Messwerte"]):
+def plot_data(datenreihen, timestamps=None, name=["Messwerte"]):
     """
     Diese Funktion nimmt Datenreihen und plottet diese in ein Diagramm.
     """
     for i, datenreihe in enumerate(datenreihen):
-        zeit = range(len(datenreihe))
+        if(timestamps==None):
+            timestamps = range(len(datenreihe))
         if(i == 0):
-            plt.plot(zeit, datenreihe, "o")
+            plt.plot(timestamps, datenreihe, "o")
         else:
-            plt.plot(zeit, datenreihe)
+            plt.plot(timestamps, datenreihe)
     plt.legend(name)
     plt.grid()
     plt.xlabel("")
@@ -172,11 +174,68 @@ def int_acc(data, bias):
         data ([float]): This is the sensor-data that will be removed of bias
         bias (float): This is the bias, that will be removed from the data
     """
-    if(verbose):
-        print(f'[Info] Removing a bias from data...')
     for i, e in enumerate(data):
+        if(verbose):
+            print(f'[Info][{i+1}/{len(data)}] Removing bias from data', end="\r")
         data[i] = e-bias
+    if(verbose):
+        print("")
     return(data)
+
+
+def calc_velocity(accelerometer_data, timestamp_data):
+    """
+    This function calculates the velocity from data of an accelerometer and
+    their designated timestamps.
+
+    Args:
+        accelerometer_data ([{"x": float, "y": float, "z": float}]): This is the accelerometer-data
+                                                                     and must be formatted as dictionaries
+                                                                     inside of a list
+        timestamp_data ([float]): This is timestamp-data from the measurements
+                                  of the accelerometer
+    """
+    velocity = {"x": [], "y": [], "z": []}
+    velocity_i = {"x": 0.0, "y": 0.0, "z": 0.0}
+    for i, e in enumerate(timestamp_data):
+        for j, xyz in enumerate(["x", "y", "z"]):
+            if(verbose):
+                print(f'[Info][{i+1}/{len(timestamp_data)}][{j+1}/3] Calculating velocities', end="\r")
+            if(i==0):
+                velocity_i[xyz] += accelerometer_data[xyz][i]*e
+            else:
+                velocity_i[xyz] += accelerometer_data[xyz][i]*(e-timestamp_data[i-1])
+            velocity[xyz].append(velocity_i[xyz])
+    if(verbose):
+        print("")
+    return(velocity)
+
+
+def calc_position(accelerometer_data, timestamp_data, velocity_data):
+    """
+    This function calculates positions based on velocity-data and timestamps.
+
+    Args:
+        accelerometer_data ([{"x": float, "y": float, "z": float}]): This is the accelerometer-data
+                                                                     and must be formatted as dictionaries
+                                                                     inside of a list
+        timestamp_data ([float]): This is timestamp-data for the velocity-data
+    """
+    position = {"x": [], "y": [], "z": []}
+    position_i = {"x": 0.0, "y": 0.0, "z": 0.0}
+    for i, e in enumerate(timestamp_data):
+        for j, xyz in enumerate(["x", "y", "z"]):
+            if(verbose):
+                print(f'[Info][{i+1}/{len(timestamp_data)}][{j+1}/3] Calculating positions', end="\r")
+            if(i==0):
+                position_i[xyz] += 0.5*accelerometer_data[xyz][i]*(e**2)+velocity_data[xyz][i]*e
+            else:
+                position_i[xyz] += 0.5*accelerometer_data[xyz][i]*((e-timestamp_data[i-1])**2)+velocity_data[xyz][i]*(e-timestamp_data[i-1])
+            position[xyz].append(position_i[xyz])
+    if(verbose):
+        print("")
+    return(position)
+
 
 
 # Classes
@@ -188,11 +247,9 @@ def int_acc(data, bias):
 
 if __name__ == '__main__':
     
-    # Clear the file of and content
+    # Clear the file of any content
     with open(os.path.join("data", "biases.txt"), "w") as file:
         file.write("")
-    
-    biases = []  # This is a collection of all biases
 
     # Iterating over several measurements the data get's processed
     for measurement_id in range(12):
@@ -201,7 +258,9 @@ if __name__ == '__main__':
         # Putting the data into sensor-streams as lists
         accelerometer = {"x": [], "y": [], "z": []}
         gyroscope = {"x": [], "y": [], "z": []}
+        timestamp = []
         for sensor_info in data:
+            timestamp.append(sensor_info[0]/1000)
             for i, e in enumerate(["x", "y", "z"]):
                 accelerometer[e].append(sensor_info[i+1])
                 gyroscope[e].append(sensor_info[i+4])
@@ -209,17 +268,27 @@ if __name__ == '__main__':
         # Plotting the sensor-information for determinating the stationary
         # parts during measurement
         # plot_data([accelerometer["x"], accelerometer["y"], accelerometer["z"],
-        #            gyroscope["x"], gyroscope["y"], gyroscope["z"]])
+        #            gyroscope["x"], gyroscope["y"], gyroscope["z"]], timestamp,
+        #           ["acc_x", "acc_y", "acc_z", "gyro_x", "gyro_y", "gyro_z"])
         
-        # Calculating the biases for the gyroscope
+        # Calculating the biases for the accelerometer
         bias = {"x": 0.0, "y": 0.0, "z": 0.0}
         for i in ["x", "y", "z"]:
-            bias[i] = bias_det(gyroscope[i],
+            bias[i] = bias_det(accelerometer[i],
                                stationary[measurement_id]["start"],
                                stationary[measurement_id]["end"])
         write_bias([bias["x"], bias["y"], bias["z"]], "biases", f'{measurement_id+1:02d}')
         
         norm_acc = {"x": [], "y": [], "z": []}
         for i in ["x", "y", "z"]:
-            norm_acc[i] = int_acc(gyroscope[i], bias[i])
-        #plot_data(np.transpose(norm_acc))
+            norm_acc[i] = int_acc(accelerometer[i], bias[i])
+
+        # Plotting the normalised values
+        # plot_data([norm_acc["x"], norm_acc["y"], norm_acc["z"]])
+
+        velocities = calc_velocity(norm_acc, timestamp)
+        positions = calc_position(norm_acc, timestamp, velocities)
+
+        # Plotting the integrated values
+        # plot_data([velocities["x"], velocities["y"], velocities["z"]])
+        # plot_data([positions["x"], positions["y"], positions["z"]], timestamp)
