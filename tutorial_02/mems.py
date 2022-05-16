@@ -19,7 +19,7 @@
 # import string as st
 # import random as r
 # import re
-# import matplotlib.pyplot as plt
+import matplotlib.pyplot as plt
 # from scipy import interpolate
 import numpy as np
 # import math as m
@@ -33,7 +33,7 @@ import os
 # Settings
 
 verbose = True  # Shows more debugging information
-
+stationary = [2500, 1400, 750, 600, 600, 1950, 130, 215, 800, 390, 350, 200]
 
 # Functions
 # -----------------------------------------------------------------------------
@@ -68,21 +68,49 @@ def import_data(input_filename):
     return(data)      
 
 # Determination of the biases
-def bias_det(data):
-    value = len(data)
+def bias_det(data, end, start=0):
     data = np.array(data)
-    bias = np.array([np.mean(data[0:value,1]), np.mean(data[0:value,2]), np.mean(data[0:value,3]), np.mean(data[0:value,4]), np.mean(data[0:value,5]), np.mean(data[0:value,6])])
-    return bias
+    bias = [np.mean(data[start:end, 1]), np.mean(data[start:end, 2]), np.mean(data[start:end, 3])]
+    return(bias)
 
-def write_bias(bias, output_filename):
+# Writing the biases to a txt-file
+def write_bias(bias, output_filename, index):
+    for i, e in enumerate(bias):
         if(verbose):
-            print(f'[Info][{i+1}] Writing to file "biases.txt"')
+            print(f'[Info][{index}] Writing to file "{output_filename}.txt"')
         with open(os.path.join("data", f'{output_filename}.txt'), "a") as file:
-            file.write(f'The biases for file {i+1:02d} are: {bias[0]:.6f} m/s², {bias[1]:.6f} m/s², {bias[2]:.6f} m/s², {bias[3]:.6f} °/s, {bias[4]:.6f} °/s, {bias[5]:.6f} °/s\n')
+            file.write(f'The biases for file {index} are: {e[0]:.6f} m/s², {e[1]:.6f} m/s², {e[2]:.6f} m/s²\n')
             if(verbose):
                 print("")
 
-  
+def plot_data(datenreihen, name=["Messwerte"]):
+    """
+    Diese Funktion nimmt Datenreihen und plottet diese in ein Diagramm.
+    """
+    for i, datenreihe in enumerate(datenreihen):
+        zeit = range(len(datenreihe))
+        if(i == 0):
+            plt.plot(zeit, datenreihe, "o")
+        else:
+            plt.plot(zeit, datenreihe)
+    plt.legend(name)
+    plt.grid()
+    plt.xlabel("")
+    plt.ylabel("")
+    plt.title(name[0])
+    plt.show()
+
+def int_acc(data, bias):
+        # Normalization of the acceleration
+        print(data)
+        
+        norm_acc = []
+        for i in data[0]:
+            norm_acc.append([i[1] + bias[0], i[2] + bias[1], i[3] + bias[2]])
+        return(norm_acc)   
+        
+        
+
 
 # Classes
 # -----------------------------------------------------------------------------
@@ -96,5 +124,9 @@ if __name__ == '__main__':
         file.write("")
     for i in range(12):
         data = import_data(f"data_rotation_{i+1:02d}.csv")
-        bias = bias_det(data)
-        write_bias(bias, "biases")
+        #plot_data(np.transpose(data))    
+        bias = []
+        bias.append(bias_det(data, stationary[i]))
+        write_bias(bias, "biases", f'{i+1:02d}')
+        #norm_acc = int_acc(data, bias)       
+        #plot_data(np.transpose(norm_acc))
