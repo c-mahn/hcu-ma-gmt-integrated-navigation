@@ -33,14 +33,45 @@ import os
 # Settings
 
 verbose = True  # Shows more debugging information
-stationary = [2500, 1400, 750, 600, 600, 1950, 130, 215, 800, 390, 350, 200]
+# stationary = [{"start": 0, "end": 2500},
+#               {"start": 0, "end": 1400},
+#               {"start": 0, "end": 750},
+#               {"start": 0, "end": 600},
+#               {"start": 0, "end": 600},
+#               {"start": 0, "end": 1950},
+#               {"start": 0, "end": 130},
+#               {"start": 0, "end": 215},
+#               {"start": 0, "end": 800},
+#               {"start": 0, "end": 390},
+#               {"start": 0, "end": 350},
+#               {"start": 0, "end": 200}]
+stationary = [{"start": 452, "end": 2574},
+              {"start": 38, "end": 1427},
+              {"start": 24, "end": 768},
+              {"start": 17, "end": 589},
+              {"start": 12, "end": 617},
+              {"start": 21, "end": 1967},
+              {"start": 7, "end": 140},
+              {"start": 4, "end": 213},
+              {"start": 10, "end": 818},
+              {"start": 9, "end": 389},
+              {"start": 6, "end": 354},   # These are the parts in which the
+              {"start": 6, "end": 202}]  # IMU was stationary while measuring
+
 
 # Functions
 # -----------------------------------------------------------------------------
 
-
-# Importing the data
 def import_data(input_filename):
+    """
+    This function is used to import a singe measurement string of ins-data.
+
+    Args:
+        input_filename (str): This specifies the name of the file, that will be
+        imported.
+    """
+    # Opening and reading file from disk
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     if(verbose):
         print(f'[Info] Opening file "{input_filename}"', end="\r")
     with open(os.path.join("data", input_filename)) as file:
@@ -50,6 +81,8 @@ def import_data(input_filename):
     if(verbose):
         print(f'[Info] Read file "{input_filename}" successfully')
 
+    # Formating the data from disk into a two-dimentional list
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     for i, e in enumerate(data):
         try:
             data[i] = e.split(';')
@@ -62,26 +95,57 @@ def import_data(input_filename):
                     data[i][j] = float(e.strip())
         except(ValueError):
             if(verbose):
-                print(f'[Info] Detected file header at line {i+1}{20*" "}')
+                print(f'[Warn] Found weiredly formatted data at line {i+1}{20*" "}')
     if(verbose):
         print("")
+    
+    # Return the loaded data
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     return(data)      
 
-# Determination of the biases
-def bias_det(data, end, start=0):
+
+def bias_det(data, start=0, end=None):
+    """
+    This function determines the bias of a specific set of values from a list.
+
+    Args:
+        data ([float]): A list with values serves as the provided data
+        start (int, optional): By providing a starting value the data partially
+                               selected
+        end (int, optional): By providing an ending value the data partially
+                             selected
+    """
+    if(verbose):
+        print(f'[Info] Determing a bias...')
+    if(end==None):
+        end = len(data)
     data = np.array(data)
-    bias = [np.mean(data[start:end, 1]), np.mean(data[start:end, 2]), np.mean(data[start:end, 3])]
+    bias = np.mean(data[start:end])
     return(bias)
 
-# Writing the biases to a txt-file
-def write_bias(bias, output_filename, index):
-    for i, e in enumerate(bias):
-        if(verbose):
-            print(f'[Info][{index}] Writing to file "{output_filename}.txt"')
-        with open(os.path.join("data", f'{output_filename}.txt'), "a") as file:
-            file.write(f'The biases for file {index} are: {e[0]:.6f} m/s², {e[1]:.6f} m/s², {e[2]:.6f} m/s²\n')
-            if(verbose):
-                print("")
+
+
+def write_bias(bias_data, filename, measurement):
+    """
+    This funtion writes the bias of the measurements to a file on disk.
+
+    Args:
+        bias_data ([float]): The bias of the data must be formatted in
+                          [x, y, z] and the unit of measurement must be m/s²
+        filename (str): This is the filename under wich the data will be
+                        appended to.
+        measurement (str): This specifies the description of the measurement
+                           and will be printed only for user-friendlyness
+                           purposes
+    """
+    if(verbose):
+        print(f'[Info] Writing biases of measurement {measurement} to "{filename}.txt"')
+    with open(os.path.join("data", f'{filename}.txt'), "a") as file:
+        file.write(f'The following biases were determined for measurement "{measurement}":\n')
+        file.write(f'X: {bias_data[0]:.6f} m/s²\n')
+        file.write(f'Y: {bias_data[1]:.6f} m/s²\n')
+        file.write(f'Z: {bias_data[2]:.6f} m/s²\n')
+        file.write(f'{15*"- "}-\n\n')
 
 def plot_data(datenreihen, name=["Messwerte"]):
     """
@@ -101,15 +165,18 @@ def plot_data(datenreihen, name=["Messwerte"]):
     plt.show()
 
 def int_acc(data, bias):
-        # Normalization of the acceleration
-        print(data)
-        
-        norm_acc = []
-        for i in data[0]:
-            norm_acc.append([i[1] + bias[0], i[2] + bias[1], i[3] + bias[2]])
-        return(norm_acc)   
-        
-        
+    """
+    This function currently is none functioning and shall not be used
+
+    Args:
+        data ([float]): This is the sensor-data that will be removed of bias
+        bias (float): This is the bias, that will be removed from the data
+    """
+    if(verbose):
+        print(f'[Info] Removing a bias from data...')
+    for i, e in enumerate(data):
+        data[i] = e-bias
+    return(data)
 
 
 # Classes
@@ -120,13 +187,39 @@ def int_acc(data, bias):
 # -----------------------------------------------------------------------------
 
 if __name__ == '__main__':
+    
+    # Clear the file of and content
     with open(os.path.join("data", "biases.txt"), "w") as file:
         file.write("")
-    for i in range(12):
-        data = import_data(f"data_rotation_{i+1:02d}.csv")
-        #plot_data(np.transpose(data))    
-        bias = []
-        bias.append(bias_det(data, stationary[i]))
-        write_bias(bias, "biases", f'{i+1:02d}')
-        #norm_acc = int_acc(data, bias)       
+    
+    biases = []  # This is a collection of all biases
+
+    # Iterating over several measurements the data get's processed
+    for measurement_id in range(12):
+        data = import_data(f'data_rotation_{measurement_id+1:02d}.csv')
+
+        # Putting the data into sensor-streams as lists
+        accelerometer = {"x": [], "y": [], "z": []}
+        gyroscope = {"x": [], "y": [], "z": []}
+        for sensor_info in data:
+            for i, e in enumerate(["x", "y", "z"]):
+                accelerometer[e].append(sensor_info[i+1])
+                gyroscope[e].append(sensor_info[i+4])
+
+        # Plotting the sensor-information for determinating the stationary
+        # parts during measurement
+        # plot_data([accelerometer["x"], accelerometer["y"], accelerometer["z"],
+        #            gyroscope["x"], gyroscope["y"], gyroscope["z"]])
+        
+        # Calculating the biases for the gyroscope
+        bias = {"x": 0.0, "y": 0.0, "z": 0.0}
+        for i in ["x", "y", "z"]:
+            bias[i] = bias_det(gyroscope[i],
+                               stationary[measurement_id]["start"],
+                               stationary[measurement_id]["end"])
+        write_bias([bias["x"], bias["y"], bias["z"]], "biases", f'{measurement_id+1:02d}')
+        
+        norm_acc = {"x": [], "y": [], "z": []}
+        for i in ["x", "y", "z"]:
+            norm_acc[i] = int_acc(gyroscope[i], bias[i])
         #plot_data(np.transpose(norm_acc))

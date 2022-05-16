@@ -41,8 +41,8 @@ def run_script(script_name):
     """
     if(verbose):
         print(f'[Info] Executing "{script_name}"')
-    #os.system(f'python3 {script_name}')
-    os.system(f'C:/Users/wolfj/anaconda3/python.exe {script_name}')
+    os.system(f'python3 {script_name}')
+    # os.system(f'C:/Users/wolfj/anaconda3/python.exe {script_name}')
     
 
 
