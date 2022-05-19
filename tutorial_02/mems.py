@@ -59,6 +59,19 @@ stationary = [{"start": 15, "end": 710},
               {"start": 0, "end": 0},
               {"start": 17, "end": 576},   # These are the parts in which the
               {"start": 23, "end": 392}]  # IMU was stationary while measuring
+stationary_2 = [{"start": 1125, "end": 1654},
+                {"start": 973, "end": 1320},
+                {"start": 923, "end": 1691},
+                {"start": 772, "end": 1467},
+                {"start": 821, "end": 1321},
+                {"start": 939, "end": 1391},
+                {"start": 1438, "end": 2041},
+                {"start": 1914, "end": 2338},
+                {"start": 1535, "end": 2229},
+                {"start": 1931, "end": 2294},
+                {"start": 0, "end": 0},
+                {"start": 1658, "end": 1999},   # These are the parts in which the
+                {"start": 1503, "end": 2348}]  # IMU was stationary while measuring
 stationary_rotation = [{"start": 452, "end": 2574},
               {"start": 38, "end": 1427},
               {"start": 24, "end": 768},
@@ -198,6 +211,29 @@ def plot_data(datenreihen, timestamps=None, name=["Messwerte"]):
     plt.title(name[0])
     plt.show()
 
+def plot_results(datenreihen, title_label, x_label, y_label, data_label, timestamps=None):
+    """
+    Temp text
+
+    Args:
+        datenreihen (_type_): _description_
+        title_label (_type_): _description_
+        x_label (_type_): _description_
+        y_label (_type_): _description_
+        data_label (_type_): _description_
+        timestamps (_type_, optional): _description_. Defaults to None.
+    """
+    for i, datenreihe in enumerate(datenreihen):
+        if(timestamps==None):
+            timestamps = range(len(datenreihe))
+        plt.plot(timestamps, datenreihe)
+    plt.legend(data_label)
+    plt.grid()
+    plt.xlabel(x_label)
+    plt.ylabel(y_label)
+    plt.title(title_label)
+    plt.show()
+
 def int_acc(data, bias):
     """
     This function currently is none functioning and shall not be used
@@ -294,7 +330,7 @@ def calc_turnrates(gyroscope_data, timestamp_data):
     #     print("")
     return(turnrates)
 
-def calc_distances(positions):
+def calc_distances(positions, stationary_start, stationary_end):
     """
     This function calculates the rotation based on velocity-data and timestamps.
 
@@ -306,7 +342,7 @@ def calc_distances(positions):
     """
     delta = []
     for xyz in ["x", "y", "z"]:
-        delta.append((positions[xyz][-1]-positions[xyz][0])**2)
+        delta.append((positions[xyz][stationary_end["start"]]-positions[xyz][stationary_start["end"]])**2)
     distance = np.sqrt(delta[0]+delta[1]+delta[2])
     # if(verbose):
     #     print("")
@@ -334,11 +370,18 @@ def write_distances(distances, filename, measurement):
 
 if __name__ == '__main__':
     
-    # Clear the biases-file of any content
+    list_of_distances = []
+    
+    # Clear files of any content
     with open(os.path.join("data", "biases.txt"), "w") as file:
         file.write("")
     with open(os.path.join("data", "distances.txt"), "w") as file:
         file.write("")
+    with open(os.path.join("data", "biases_rotation.txt"), "w") as file:
+        file.write("")
+    
+    # Processing the Track-Data
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Iterating over several measurements the data get's processed
     for measurement_id in range(13):
@@ -382,14 +425,28 @@ if __name__ == '__main__':
         # plot_data([velocities["x"], velocities["y"], velocities["z"]], None, ["velocitie_x", "velocitie_y", "velocitie_z"])
         # plot_data([positions["x"], positions["y"], positions["z"]], timestamp, ["position_x", "position_y", "position_z"])
 
-        distances = calc_distances(positions)
-        write_distances(distances, "distances", f'{measurement_id+1:02d}')
+        distance = calc_distances(positions, stationary[measurement_id], stationary_2[measurement_id])
+        if(measurement_id != 10):
+            list_of_distances.append(distance)
+        write_distances(distance, "distances", f'{measurement_id+1:02d}')
         if(verbose):
             print("")
 
-    # Clear the biases-file of any content
-    with open(os.path.join("data", "biases_rotation.txt"), "w") as file:
-        file.write("")
+        # plot_results([velocities["x"], velocities["y"], velocities["z"]], f'Velocities for measurement {measurement_id+1} on the track', "time [s]", "velocity [m/s]", ["x", "y", "z"], timestamp)
+        plot_results([positions["x"], positions["y"], positions["z"]], f'Positions for measurement {measurement_id+1} on the track', "time [s]", "position [m]", ["x", "y", "z"], timestamp)
+
+    distance_min = np.min(np.array(list_of_distances))
+    distance_max = np.max(np.array(list_of_distances))
+    distance_avg = np.average(np.array(list_of_distances))
+    distance_std = np.std(np.array(list_of_distances))
+    with open(os.path.join("data", "distances.txt"), "a") as file:
+        file.write(f'Min: {distance_min:6.3f} m\n')
+        file.write(f'Max: {distance_max:6.3f} m\n')
+        file.write(f'Avg: {distance_avg:6.3f} m\n')
+        file.write(f'Std: {distance_std:6.3f} m\n')
+
+    # Processing the Rotation-Data
+    # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
 
     # Iterating over several measurements the data get's processed
     for measurement_id_rotation in range(12):
