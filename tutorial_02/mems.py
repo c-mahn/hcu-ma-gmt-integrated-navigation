@@ -433,6 +433,7 @@ if __name__ == '__main__':
             print("")
 
         # Plotting the results
+        # plot_results([norm_acc["x"], norm_acc["y"], norm_acc["z"]], f'Acceleration for measurement {measurement_id+1} on the track', "time [s]", "acceleration [m/s²]", ["x", "y", "z"], timestamp)
         # plot_results([velocities["x"], velocities["y"], velocities["z"]], f'Velocities for measurement {measurement_id+1} on the track', "time [s]", "velocity [m/s]", ["x", "y", "z"], timestamp)
         # plot_results([positions["x"], positions["y"], positions["z"]], f'Positions for measurement {measurement_id+1} on the track', "time [s]", "position [m]", ["x", "y", "z"], timestamp)
 
@@ -491,4 +492,5 @@ if __name__ == '__main__':
         # plot_data([turn["x"], turn["y"], turn["z"]], None, ["turn_x", "turn_y", "turn_z"])
 
         # Plotting the results
-        plot_results([turn["x"], turn["y"], turn["z"]], f'Rotation for measurement {measurement_id_rotation+1} on the turntable', "time [s]", "rotation [°]", ["x", "y", "z"], timestamp_rotation)
+        # plot_results([norm_acc_rotation["x"], norm_acc_rotation["y"], norm_acc_rotation["z"]], f'Rotation-rate for measurement {measurement_id_rotation+1} on the turntable', "time [s]", "rotation [°/s]", ["x", "y", "z"], timestamp_rotation)
+        # plot_results([turn["x"], turn["y"], turn["z"]], f'Rotation for measurement {measurement_id_rotation+1} on the turntable', "time [s]", "rotation [°]", ["x", "y", "z"], timestamp_rotation)
