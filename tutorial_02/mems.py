@@ -432,8 +432,9 @@ if __name__ == '__main__':
         if(verbose):
             print("")
 
+        # Plotting the results
         # plot_results([velocities["x"], velocities["y"], velocities["z"]], f'Velocities for measurement {measurement_id+1} on the track', "time [s]", "velocity [m/s]", ["x", "y", "z"], timestamp)
-        plot_results([positions["x"], positions["y"], positions["z"]], f'Positions for measurement {measurement_id+1} on the track', "time [s]", "position [m]", ["x", "y", "z"], timestamp)
+        # plot_results([positions["x"], positions["y"], positions["z"]], f'Positions for measurement {measurement_id+1} on the track', "time [s]", "position [m]", ["x", "y", "z"], timestamp)
 
     distance_min = np.min(np.array(list_of_distances))
     distance_max = np.max(np.array(list_of_distances))
@@ -483,8 +484,11 @@ if __name__ == '__main__':
         # Plotting the normalised values
         # plot_data([norm_acc_rotation["x"], norm_acc_rotation["y"], norm_acc_rotation["z"]], None, ["gyro_x", "gyro_y", "gyro_z"])
 
-        turnrates = calc_turnrates(norm_acc_rotation, timestamp_rotation)
+        turn = calc_turnrates(norm_acc_rotation, timestamp_rotation)
         if(verbose):
             print("\n")
         # Plotting the integrated values
-        # plot_data([turnrates["x"], turnrates["y"], turnrates["z"]], None, ["turnrate_x", "turnrate_y", "turnrate_z"])
+        # plot_data([turn["x"], turn["y"], turn["z"]], None, ["turn_x", "turn_y", "turn_z"])
+
+        # Plotting the results
+        plot_results([turn["x"], turn["y"], turn["z"]], f'Rotation for measurement {measurement_id_rotation+1} on the turntable', "time [s]", "rotation [°]", ["x", "y", "z"], timestamp_rotation)
