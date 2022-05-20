@@ -1,0 +1,72 @@
+The following biases were determined for measurement "01":
+X: -0.116706 degree/s
+Y: -1.155061 degree/s
+Z: 0.024020 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "02":
+X: -0.115119 degree/s
+Y: -1.167531 degree/s
+Z: 0.038265 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "03":
+X: -0.122728 degree/s
+Y: -1.170632 degree/s
+Z: 0.043562 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "04":
+X: -0.128357 degree/s
+Y: -1.173112 degree/s
+Z: 0.038094 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "05":
+X: -0.116413 degree/s
+Y: -1.167934 degree/s
+Z: 0.030248 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "06":
+X: -0.118006 degree/s
+Y: -1.171238 degree/s
+Z: 0.034502 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "07":
+X: -0.116917 degree/s
+Y: -1.182105 degree/s
+Z: 0.030075 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "08":
+X: -0.124115 degree/s
+Y: -1.174545 degree/s
+Z: 0.027177 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "09":
+X: -0.114864 degree/s
+Y: -1.175854 degree/s
+Z: 0.031955 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "10":
+X: -0.122711 degree/s
+Y: -1.181737 degree/s
+Z: 0.038421 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "11":
+X: -0.122730 degree/s
+Y: -1.194023 degree/s
+Z: 0.038793 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "12":
+X: -0.127602 degree/s
+Y: -1.185918 degree/s
+Z: 0.053316 degree/s
+- - - - - - - - - - - - - - - -
+

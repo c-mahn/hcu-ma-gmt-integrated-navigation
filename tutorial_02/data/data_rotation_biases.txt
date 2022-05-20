@@ -1,0 +1,288 @@
+The following biases were determined for measurement "01 (before movement)":
+X: 0.456616 m/s^2
+Y: -0.471876 m/s^2
+Z: -10.945057 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "01 (after movement)":
+X: 0.456511 m/s^2
+Y: -0.472555 m/s^2
+Z: -10.940997 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "01 (before movement)":
+X: -0.116706 degree/s
+Y: -1.155061 degree/s
+Z: 0.024020 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "01 (after movement)":
+X: -0.112773 degree/s
+Y: -1.151277 degree/s
+Z: 0.017913 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "02 (before movement)":
+X: 0.464860 m/s^2
+Y: -0.477401 m/s^2
+Z: -10.939431 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "02 (after movement)":
+X: 0.460939 m/s^2
+Y: -0.465083 m/s^2
+Z: -10.934586 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "02 (before movement)":
+X: -0.115119 degree/s
+Y: -1.167531 degree/s
+Z: 0.038265 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "02 (after movement)":
+X: -0.135580 degree/s
+Y: -1.174641 degree/s
+Z: 0.037569 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "03 (before movement)":
+X: 0.455067 m/s^2
+Y: -0.461331 m/s^2
+Z: -10.941452 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "03 (after movement)":
+X: 0.463432 m/s^2
+Y: -0.466168 m/s^2
+Z: -10.939074 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "03 (before movement)":
+X: -0.122728 degree/s
+Y: -1.170632 degree/s
+Z: 0.043562 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "03 (after movement)":
+X: -0.118189 degree/s
+Y: -1.176021 degree/s
+Z: 0.034863 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "04 (before movement)":
+X: 0.462780 m/s^2
+Y: -0.469878 m/s^2
+Z: -10.940577 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "04 (after movement)":
+X: 0.462115 m/s^2
+Y: -0.478654 m/s^2
+Z: -10.938526 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "04 (before movement)":
+X: -0.128357 degree/s
+Y: -1.173112 degree/s
+Z: 0.038094 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "04 (after movement)":
+X: -0.125385 degree/s
+Y: -1.184872 degree/s
+Z: 0.015449 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "05 (before movement)":
+X: 0.458083 m/s^2
+Y: -0.478248 m/s^2
+Z: -10.939008 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "05 (after movement)":
+X: 0.445570 m/s^2
+Y: -0.478059 m/s^2
+Z: -10.933629 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "05 (before movement)":
+X: -0.116413 degree/s
+Y: -1.167934 degree/s
+Z: 0.030248 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "05 (after movement)":
+X: -0.124937 degree/s
+Y: -1.167932 degree/s
+Z: 0.021603 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "06 (before movement)":
+X: 0.442477 m/s^2
+Y: -0.480098 m/s^2
+Z: -10.935211 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "06 (after movement)":
+X: 0.447670 m/s^2
+Y: -0.489320 m/s^2
+Z: -10.940000 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "06 (before movement)":
+X: -0.118006 degree/s
+Y: -1.171238 degree/s
+Z: 0.034502 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "06 (after movement)":
+X: -0.104951 degree/s
+Y: -1.171456 degree/s
+Z: 0.029029 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "07 (before movement)":
+X: 0.449699 m/s^2
+Y: -0.478647 m/s^2
+Z: -10.935940 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "07 (after movement)":
+X: 0.447917 m/s^2
+Y: -0.461750 m/s^2
+Z: -10.937083 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "07 (before movement)":
+X: -0.116917 degree/s
+Y: -1.182105 degree/s
+Z: 0.030075 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "07 (after movement)":
+X: -0.132292 degree/s
+Y: -1.204917 degree/s
+Z: 0.040208 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "08 (before movement)":
+X: 0.451914 m/s^2
+Y: -0.461914 m/s^2
+Z: -10.936411 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "08 (after movement)":
+X: 0.464000 m/s^2
+Y: -0.473455 m/s^2
+Z: -10.939636 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "08 (before movement)":
+X: -0.124115 degree/s
+Y: -1.174545 degree/s
+Z: 0.027177 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "08 (after movement)":
+X: -0.123818 degree/s
+Y: -1.206545 degree/s
+Z: 0.007455 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "09 (before movement)":
+X: 0.464245 m/s^2
+Y: -0.476052 m/s^2
+Z: -10.935978 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "09 (after movement)":
+X: 0.452222 m/s^2
+Y: -0.457778 m/s^2
+Z: -10.934861 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "09 (before movement)":
+X: -0.114864 degree/s
+Y: -1.175854 degree/s
+Z: 0.031955 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "09 (after movement)":
+X: -0.131667 degree/s
+Y: -1.152361 degree/s
+Z: 0.048056 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "10 (before movement)":
+X: 0.454105 m/s^2
+Y: -0.464842 m/s^2
+Z: -10.932737 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "10 (after movement)":
+X: 0.456500 m/s^2
+Y: -0.480333 m/s^2
+Z: -10.952167 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "10 (before movement)":
+X: -0.122711 degree/s
+Y: -1.181737 degree/s
+Z: 0.038421 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "10 (after movement)":
+X: -0.134167 degree/s
+Y: -1.201833 degree/s
+Z: 0.037667 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "11 (before movement)":
+X: 0.455230 m/s^2
+Y: -0.483075 m/s^2
+Z: -10.931034 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "11 (after movement)":
+X: 0.436337 m/s^2
+Y: -0.482772 m/s^2
+Z: -10.938218 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "11 (before movement)":
+X: -0.122730 degree/s
+Y: -1.194023 degree/s
+Z: 0.038793 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "11 (after movement)":
+X: -0.130891 degree/s
+Y: -1.164059 degree/s
+Z: 0.025842 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "12 (before movement)":
+X: 0.446837 m/s^2
+Y: -0.467449 m/s^2
+Z: -10.934337 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "12 (after movement)":
+X: 0.447016 m/s^2
+Y: -0.464556 m/s^2
+Z: -10.939032 m/s^2
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "12 (before movement)":
+X: -0.127602 degree/s
+Y: -1.185918 degree/s
+Z: 0.053316 degree/s
+- - - - - - - - - - - - - - - -
+
+The following biases were determined for measurement "12 (after movement)":
+X: -0.126048 degree/s
+Y: -1.193266 degree/s
+Z: 0.041976 degree/s
+- - - - - - - - - - - - - - - -
+

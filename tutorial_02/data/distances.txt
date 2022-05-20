@@ -1,33 +1,56 @@
-The following distance was determined for measurement "01":X: 7.621808 m
+The following distance was determined for measurement "01":
+7.621808 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "02":X: 5.907393 m
+The following distance was determined for measurement "02":
+5.907393 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "03":X: 5.699544 m
+The following distance was determined for measurement "03":
+5.699544 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "04":X: 4.865212 m
+The following distance was determined for measurement "04":
+4.865212 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "05":X: 5.526145 m
+The following distance was determined for measurement "05":
+5.526145 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "06":X: 8.885973 m
+The following distance was determined for measurement "06":
+8.885973 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "07":X: 4.478763 m
+The following distance was determined for measurement "07":
+4.478763 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "08":X: 7.102817 m
+The following distance was determined for measurement "08":
+7.102817 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "09":X: 10.872106 m
+The following distance was determined for measurement "09":
+10.872106 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "10":X: 10.734250 m
+The following distance was determined for measurement "10":
+10.734250 m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "11":X: nan m
+The following distance was determined for measurement "11":
+nan m
 - - - - - - - - - - - - - - - -
 
+The following distance was determined for measurement "12":
+6.179260 m
+- - - - - - - - - - - - - - - -
+
+The following distance was determined for measurement "13":
+10.629639 m
+- - - - - - - - - - - - - - - -
+
+Min:  4.479 m
+Max: 10.872 m
+Avg:  7.375 m
+Std:  2.255 m
