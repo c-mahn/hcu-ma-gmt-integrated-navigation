@@ -211,6 +211,18 @@ def plot_data(datenreihen, timestamps=None, name=["Messwerte"]):
     plt.title(name[0])
     plt.show()
 
+def plot_data2(datenreihe1, datenreihe2, name=["Messwerte"]):
+    """
+    Diese Funktion nimmt Datenreihen und plottet diese in ein Diagramm.
+    """
+    plt.plot(datenreihe1, datenreihe2)
+    plt.legend(name)
+    plt.grid()
+    plt.xlabel("")
+    plt.ylabel("")
+    plt.title(name[0])
+    plt.show()
+
 def plot_results(datenreihen, title_label, x_label, y_label, data_label, timestamps=None):
     """
     Temp text
@@ -422,8 +434,9 @@ if __name__ == '__main__':
         positions = calc_position(norm_acc, timestamp, velocities)
 
         # Plotting the integrated values
-        # plot_data([velocities["x"], velocities["y"], velocities["z"]], None, ["velocitie_x", "velocitie_y", "velocitie_z"])
+        # plot_data([velocities["x"], velocities["y"], velocities["z"]], None, ["velocity_x", "velocity_y", "velocity_z"])
         # plot_data([positions["x"], positions["y"], positions["z"]], timestamp, ["position_x", "position_y", "position_z"])
+        # plot_data2(positions["x"], positions["y"])
 
         distance = calc_distances(positions, stationary[measurement_id], stationary_2[measurement_id])
         if(measurement_id != 10):
@@ -484,6 +497,10 @@ if __name__ == '__main__':
     
         # Plotting the normalised values
         # plot_data([norm_acc_rotation["x"], norm_acc_rotation["y"], norm_acc_rotation["z"]], None, ["gyro_x", "gyro_y", "gyro_z"])
+
+        velocities_rotation = calc_velocity(norm_acc_rotation, timestamp_rotation)
+        positions_rotation = calc_position(norm_acc_rotation, timestamp_rotation, velocities_rotation)
+        # plot_data2(positions_rotation["x"], positions_rotation["y"])
 
         turn = calc_turnrates(norm_acc_rotation, timestamp_rotation)
         if(verbose):

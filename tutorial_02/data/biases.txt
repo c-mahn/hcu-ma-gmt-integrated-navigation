@@ -70,9 +70,3 @@ Y: 0.214275 m/s^2
 Z: -9.693631 m/s^2
 - - - - - - - - - - - - - - - -
 
-The following biases were determined for measurement "13":
-X: 0.730027 m/s^2
-Y: 0.208780 m/s^2
-Z: -9.693333 m/s^2
-- - - - - - - - - - - - - - - -
-

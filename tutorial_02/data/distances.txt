@@ -31,13 +31,3 @@ The following distance was determined for measurement "10":X: 10.734250 m
 The following distance was determined for measurement "11":X: nan m
 - - - - - - - - - - - - - - - -
 
-The following distance was determined for measurement "12":X: 6.179260 m
-- - - - - - - - - - - - - - - -
-
-The following distance was determined for measurement "13":X: 10.629639 m
-- - - - - - - - - - - - - - - -
-
-Min:  4.479 m
-Max: 10.872 m
-Avg:  7.375 m
-Std:  2.255 m
