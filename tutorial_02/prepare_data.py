@@ -123,5 +123,5 @@ def convert_data(input_filename, output_filename):
 # -----------------------------------------------------------------------------
 
 if __name__ == '__main__':
-    convert_data("rotation_groupE.txt", "data_rotation")
+    convert_data("rotation_groupE.txt", "data_turntable")
     convert_data("track_groupE.txt", "data_track")

@@ -1,0 +1,12 @@
+The distance from measurement 01 is  4.976 m.
+The distance from measurement 02 is  2.751 m.
+The distance from measurement 03 is  3.956 m.
+The distance from measurement 04 is  3.003 m.
+The distance from measurement 05 is  0.921 m.
+The distance from measurement 06 is  2.240 m.
+The distance from measurement 07 is  3.006 m.
+The distance from measurement 08 is  1.337 m.
+The distance from measurement 09 is  1.978 m.
+The distance from measurement 10 is  2.775 m.
+The distance from measurement 11 is  2.113 m.
+The distance from measurement 12 is  2.730 m.
