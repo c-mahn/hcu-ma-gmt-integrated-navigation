@@ -388,22 +388,27 @@ def write_bias_rotation(bias_data, filename, measurement):
     printf("", filename)
 
 
-def plot_results(datenreihen, title_label, x_label, y_label, data_label, timestamps=None):
+def plot_results(datasets, title_label, x_label, y_label, data_label, timestamps=None):
     """
-    Temp text
+    This function plots graphs.
 
     Args:
-        datenreihen (_type_): _description_
-        title_label (_type_): _description_
-        x_label (_type_): _description_
-        y_label (_type_): _description_
-        data_label (_type_): _description_
-        timestamps (_type_, optional): _description_. Defaults to None.
+        datasets ([[float]]): A list with datasets a lists with floating-point
+        
+                              numbers
+        title_label (str): This is the tile of the plot
+        x_label (str): This is the label of the x-axis
+        y_label (str): This is the label of the y-axis
+        data_label ([str]): This is a list with labels of the datasets
+        timestamps ([float], optional): By using a list of floating-point
+                                        numbers the data get's plotted on a
+                                        time-axis. If nothing is provided the
+                                        values will be plotted equidistant.
     """
-    for i, datenreihe in enumerate(datenreihen):
+    for i, dataset in enumerate(datasets):
         if(timestamps==None):
-            timestamps = range(len(datenreihe))
-        plt.plot(timestamps, datenreihe)
+            timestamps = range(len(dataset))
+        plt.plot(timestamps, dataset)
     plt.legend(data_label)
     plt.grid()
     plt.xlabel(x_label)
@@ -414,13 +419,14 @@ def plot_results(datenreihen, title_label, x_label, y_label, data_label, timesta
 
 def process_data(measurement, number_of_measurements, stationary_indices, plot=False):
     """
-    Temp text.
+    This function processes datasets labeled to the following:
+    "<mesurement>_01.csv"
 
     Args:
-        measurement (_type_): _description_
-        number_of_measurements (_type_): _description_
-        stationary_indices (_type_): _description_
-        plot (bool, optional): _description_. Defaults to False.
+        measurement (str): name of the dataset
+        number_of_measurements (int): the total amount of measurements to interate over
+        stationary_indices ({"before": [{"start": int, "end": int}], "after": [{"start": int, "end": int}]}): A complex dictionary/list of indices for stationary part during the measurement.
+        plot (bool, optional): If enabled all the plots will be created (a lot of window-popups). Defaults to False.
     """
     # Clearing output-files
     clearf(f"{measurement}_biases")
