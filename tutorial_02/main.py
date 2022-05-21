@@ -46,7 +46,7 @@ def run_script(script_name):
     os.system(f'python3 {script_name}')
 
     # Run on Windows
-    user = os.environ.get('USER')
+    user = os.environ.get('USERNAME')
     os.system(f'C:/Users/{user}/anaconda3/python.exe {script_name}')
 
 
