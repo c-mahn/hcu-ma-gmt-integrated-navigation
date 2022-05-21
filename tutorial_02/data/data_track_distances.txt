@@ -1,13 +1,2 @@
 The distance from measurement 01 is  5.188 m.
 The distance from measurement 02 is  4.931 m.
-The distance from measurement 03 is  5.041 m.
-The distance from measurement 04 is  5.506 m.
-The distance from measurement 05 is  5.506 m.
-The distance from measurement 06 is  5.755 m.
-The distance from measurement 07 is  4.304 m.
-The distance from measurement 08 is  5.426 m.
-The distance from measurement 09 is  5.524 m.
-The distance from measurement 10 is 11.094 m.
-The distance from measurement 11 is    nan m.
-The distance from measurement 12 is  5.914 m.
-The distance from measurement 13 is  4.938 m.
