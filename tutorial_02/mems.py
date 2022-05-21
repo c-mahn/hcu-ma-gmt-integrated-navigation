@@ -537,13 +537,13 @@ def process_data(measurement, number_of_measurements, stationary_indices, plot=F
                          ["x", "y", "z"],
                          timestamps)
             plot_results([gyroscope_without_bias["x"], gyroscope_without_bias["y"], gyroscope_without_bias["z"]],
-                         f'Gyroscope-data from {measurement} with measurement {measurement_id+1:02d} with the bias removed',
+                         f'Gyroscope-data from {measurement} with measurement {measurement_id+1:02d} with bias removed',
                          "time [s]",
                          "rotation change [°/s]",
                          ["x", "y", "z"],
                          timestamps)
             plot_results([accelerometer_without_bias["x"], accelerometer_without_bias["y"], accelerometer_without_bias["z"]],
-                         f'Accelerometer-data from {measurement} with measurement {measurement_id+1:02d} with the bias removed',
+                         f'Accelerometer-data from {measurement} with measurement {measurement_id+1:02d} with bias removed',
                          "time [s]",
                          "acceleration [m/s²]",
                          ["x", "y", "z"],
