@@ -41,13 +41,11 @@ def run_script(script_name):
     """
     if(verbose):
         print(f'[Info] Executing "{script_name}"')
-
-    # Run on Linux
-    os.system(f'python3 {script_name}')
-
-    # Run on Windows
     user = os.environ.get('USERNAME')
-    os.system(f'C:/Users/{user}/anaconda3/python.exe {script_name}')
+    if(user == None):
+        os.system(f'python3 {script_name}')  # Run on Linux
+    else:
+        os.system(f'C:/Users/{user}/anaconda3/python.exe {script_name}')  # Run on Windows
 
 
 # Classes
