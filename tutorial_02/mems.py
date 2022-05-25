@@ -23,7 +23,7 @@ from turtle import position
 import matplotlib.pyplot as plt
 # from scipy import interpolate
 import numpy as np
-# import math as m
+import math as m
 # import sys
 import os
 # from scipy.fft import fft, fftfreq
@@ -342,6 +342,34 @@ def calc_distance(positions, stationary_start, stationary_end):
     return(distance)
 
 
+def calc_trajectory(position_data, rotation_data):
+    """
+    This function calculates a 2D trajectory of an IMU using integrated values as
+    distance and rotation.
+
+    Args:
+        position_data ({"x": [float], "y": [float], "z": [float]}): position data as lists in a dictionary
+        rotation_data ({"x": [float], "y": [float], "z": [float]}): rotation data as lists in a dictionary
+    """
+    if(verbose):
+        print("[Info] Calculating trajectory")
+    last_value = {"x": 0.0, "y": 0.0, "z": 0.0}
+    position_change = {"x": [], "y": [], "z": []}
+    for xyz in ["x", "y", "z"]:
+        for i, e in enumerate(position_data[xyz]):
+            position_change[xyz].append(e-last_value[xyz])
+    trajectory = {"x": [0.0], "y": [0.0]}
+    rho = m.pi/180
+    for i, e in enumerate(position_change["x"]):
+        if(verbose):
+            print(f'[Info][{i+1}/{len(position_change["x"])}] Calculating trajectory', end="\r")
+        trajectory["x"].append(trajectory["x"][i] + (m.sin(rotation_data["z"][i]*rho)*position_change["x"][i]) + (m.cos(rotation_data["z"][i]*rho)*position_change["y"][i]))
+        trajectory["y"].append(trajectory["y"][i] + (m.sin(rotation_data["z"][i]*rho)*position_change["y"][i]) + (m.cos(rotation_data["z"][i]*rho)*position_change["x"][i]))
+    if(verbose):
+        print("")
+    return(trajectory)
+
+
 def write_bias_acceleration(bias_data, filename, measurement):
     """
     This funtion writes the bias of the measurements to a file on disk.
@@ -522,6 +550,9 @@ def process_data(measurement, number_of_measurements, stationary_indices, plot=F
         distance = calc_distance(position, stationary_indices["before"][measurement_id], stationary_indices["after"][measurement_id])
         printf(f'The distance from measurement {measurement_id+1:02d} is {distance:6.3f} m.', f'{measurement}_distances')
 
+        # Calculation of a trajectory
+        trajectory = calc_trajectory(position, rotation)
+
         # Plot of data
         if(plot == True):
             plot_results([gyroscope["x"], gyroscope["y"], gyroscope["z"]],
@@ -572,6 +603,12 @@ def process_data(measurement, number_of_measurements, stationary_indices, plot=F
                          "rotation [°]",
                          ["x", "y", "z"],
                          timestamps)
+            plot_results([trajectory["x"]],
+                        f'Trajectory from {measurement} with measurement {measurement_id+1:02d}',
+                        "Y",
+                        "X",
+                        ["trajectory"],
+                        trajectory["y"])
 
 
 # Classes
