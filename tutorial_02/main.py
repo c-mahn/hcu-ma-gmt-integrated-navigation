@@ -22,6 +22,7 @@
 # import random as r
 # import re
 import os
+import platform
 
 
 # -----------------------------------------------------------------------------
@@ -39,16 +40,14 @@ def run_script(script_name):
     Args:
         script_name (str): name of the python script (eg: "demo.py")
     """
-    if(verbose):
-        print(f'[Info] Executing "{script_name}"')
-    user = os.environ.get('USERNAME')
-    if(user == None):
+    if(platform.system() == "Linux"):
         if(verbose):
-            print(f'[Info] Executing as Linux-User')
+            print(f'[Info] Executing "{script_name}" as Linux-User')
         os.system(f'python3 {script_name}')  # Run on Linux
-    else:
+    elif(platform.system() == "Windows"):
         if(verbose):
-            print(f'[Info] Executing as Windows-User')
+            print(f'[Info] Executing "{script_name}" as Windows-User')
+        user = os.environ.get('USERNAME')
         os.system(f'C:/Users/{user}/anaconda3/python.exe {script_name}')  # Run on Windows
 
 
