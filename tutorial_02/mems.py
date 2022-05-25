@@ -33,7 +33,7 @@ import os
 # -----------------------------------------------------------------------------
 # Settings
 
-verbose = True  # Shows more debugging information
+verbose = False  # Shows more debugging information
 
 # The following values are the stationary parts of measurements, where the IMU
 # wasn't moved.
