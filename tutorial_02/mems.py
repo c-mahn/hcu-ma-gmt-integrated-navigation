@@ -349,6 +349,7 @@ def calc_trajectory(position_data, rotation_data):
     for xyz in ["x", "y", "z"]:
         for i, e in enumerate(position_data[xyz]):
             position_change[xyz].append(e-last_value[xyz])
+            last_value[xyz] = e
     trajectory = {"x": [0.0], "y": [0.0]}
     rho = m.pi/180
     for i, e in enumerate(position_change["x"]):
