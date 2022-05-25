@@ -34,18 +34,9 @@ import os
 # Settings
 
 verbose = True  # Shows more debugging information
-# stationary = [{"start": 0, "end": 2500},
-#               {"start": 0, "end": 1400},
-#               {"start": 0, "end": 750},
-#               {"start": 0, "end": 600},
-#               {"start": 0, "end": 600},
-#               {"start": 0, "end": 1950},
-#               {"start": 0, "end": 130},
-#               {"start": 0, "end": 215},
-#               {"start": 0, "end": 800},
-#               {"start": 0, "end": 390},
-#               {"start": 0, "end": 350},
-#               {"start": 0, "end": 200}]
+
+# The following values are the stationary parts of measurements, where the IMU
+# wasn't moved.
 stationary_track = {"before": [{"start": 15, "end": 710},
                                {"start": 7, "end": 597},
                                {"start": 11, "end": 485},
