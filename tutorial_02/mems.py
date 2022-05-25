@@ -621,7 +621,7 @@ if __name__ == '__main__':
     process_data("data_track", 13, stationary_track, diagrams)
 
     for i in range(12):
-        printf(f'The distance for measurement {i} is: {list_of_distances[i]} m', "distances")
+        printf(f'The distance for measurement {i} is: {list_of_distances[i]:6.3f} m', "distances")
     distance_min = np.min(np.array(list_of_distances))
     printf(f'Min: {distance_min:6.3f} m', "distances")
     distance_max = np.max(np.array(list_of_distances))

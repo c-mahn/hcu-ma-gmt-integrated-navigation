@@ -1,15 +1,15 @@
-The distance for measurement 0 is: 5.188281403303094 m
-The distance for measurement 1 is: 4.931179467625385 m
-The distance for measurement 2 is: 5.040889504740215 m
-The distance for measurement 3 is: 5.505934236284902 m
-The distance for measurement 4 is: 5.505784977196674 m
-The distance for measurement 5 is: 5.754852873358809 m
-The distance for measurement 6 is: 4.30379764338651 m
-The distance for measurement 7 is: 5.4264500151898964 m
-The distance for measurement 8 is: 5.5235140065628 m
-The distance for measurement 9 is: 11.094066691464219 m
-The distance for measurement 10 is: 5.914245313910191 m
-The distance for measurement 11 is: 4.93771580244528 m
+The distance for measurement 0 is:  5.188 m
+The distance for measurement 1 is:  4.931 m
+The distance for measurement 2 is:  5.041 m
+The distance for measurement 3 is:  5.506 m
+The distance for measurement 4 is:  5.506 m
+The distance for measurement 5 is:  5.755 m
+The distance for measurement 6 is:  4.304 m
+The distance for measurement 7 is:  5.426 m
+The distance for measurement 8 is:  5.524 m
+The distance for measurement 9 is: 11.094 m
+The distance for measurement 10 is:  5.914 m
+The distance for measurement 11 is:  4.938 m
 Min:  4.304 m
 Max: 11.094 m
 Avg:  5.761 m
