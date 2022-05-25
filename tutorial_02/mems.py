@@ -540,6 +540,8 @@ def process_data(measurement, number_of_measurements, stationary_indices, plot=F
 
         # Calculation of the measured distance
         distance = calc_distance(position, stationary_indices["before"][measurement_id], stationary_indices["after"][measurement_id])
+        if(measurement_id != 10):
+            list_of_distances.append(distance)
         printf(f'The distance from measurement {measurement_id+1:02d} is {distance:6.3f} m.', f'{measurement}_distances')
 
         # Calculation of a trajectory
@@ -602,7 +604,6 @@ def process_data(measurement, number_of_measurements, stationary_indices, plot=F
                         ["trajectory"],
                         trajectory["y"])
 
-
 # Classes
 # -----------------------------------------------------------------------------
 
@@ -612,5 +613,23 @@ def process_data(measurement, number_of_measurements, stationary_indices, plot=F
 
 if __name__ == '__main__':
     diagrams = False
+
+    list_of_distances = []
+    with open(os.path.join("data", "distances.txt"), "w") as file:
+        file.write("")
+
     process_data("data_track", 13, stationary_track, diagrams)
+
+    for i in range(12):
+        printf(f'The distance for measurement {i+1:2.0f} is: {list_of_distances[i]:6.3f} m', "distances")
+    distance_min = np.min(np.array(list_of_distances))
+    printf(f'Min: {distance_min:6.3f} m', "distances")
+    distance_max = np.max(np.array(list_of_distances))
+    printf(f'Max: {distance_max:6.3f} m', "distances")
+    distance_avg = np.average(np.array(list_of_distances))
+    printf(f'Avg: {distance_avg:6.3f} m', "distances")
+    distance_std = np.std(np.array(list_of_distances))
+    printf(f'Std: {distance_std:6.3f} m', "distances")
+
+    diagrams = False   
     process_data("data_turntable", 12, stationary_turntable, diagrams)
