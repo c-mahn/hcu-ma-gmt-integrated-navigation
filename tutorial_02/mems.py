@@ -316,13 +316,7 @@ def calc_rotation(gyroscope_data, timestamp_data):
 
 def calc_distance(positions, stationary_start, stationary_end):
     """
-    This function calculates the rotation based on velocity-data and timestamps.
-
-    Args:
-        gyroscope_data ([{"x": float, "y": float, "z": float}]):     his is the gyroscope-data
-                                                                     and must be formatted as dictionaries
-                                                                     inside of a list
-        timestamp_data ([float]): This is timestamp-data for the velocity-data
+    This function calculates the distance of a IMU-measurement
     """
     if(verbose):
         print("[Info] Calculating distance")
