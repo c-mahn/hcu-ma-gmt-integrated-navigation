@@ -147,14 +147,14 @@ def import_data(input_filename):
     # - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - - -
     for i, e in enumerate(data):
         try:
-            data[i] = e.split(';')
+            data[i] = e.strip().split(';')
             for j, e in enumerate(data[i]):
                 if(verbose):
                     print(f'[Info][{i+1}/{len(data)}][{j+1}/{len(data[i])}] Importing entries', end="\r")
                 if(j==0):
-                    data[i][j] = int(e.strip())
+                    data[i][j] = int(e)
                 else:
-                    data[i][j] = float(e.strip())
+                    data[i][j] = float(e)
         except(ValueError):
             if(verbose):
                 print(f'[Warn] Found weiredly formatted data at line {i+1}{20*" "}')
@@ -456,9 +456,9 @@ def process_data(measurement, number_of_measurements, stationary_indices, plot=F
         timestamps = []
         for sensor_info in data:
             timestamps.append(sensor_info[0]/1000)
-            for i, e in enumerate(["x", "y", "z"]):
-                accelerometer[e].append(sensor_info[i+1])
-                gyroscope[e].append(sensor_info[i+4])
+            for i, xyz in enumerate(["x", "y", "z"]):
+                accelerometer[xyz].append(sensor_info[i+1])
+                gyroscope[xyz].append(sensor_info[i+4])
 
         # Determine the biases before and after the movement for the accelerometer
         accelerometer_bias = {"before": {"x": 0.0, "y": 0.0, "z": 0.0},
