@@ -18,6 +18,13 @@ for i in range(len(data_gps[:,0])):
   measurement[i,1] = y
   measurement[i,2] = data_gps[i,3]
 
+def printmeasurement(measurement, data_gps, end="\n"):
+    with open(os.path.join("data", f'measurements.txt'), "a") as file:
+      for i in range(len(measurement)):
+        file.write(f'{data_gps[i,0]};{measurement[i,0]};{measurement[i,1]};{measurement[i,2]}{end}')
+
+printmeasurement(measurement, data_gps)
+
 """
 plt.plot(measurement[:,0], measurement[:,1], label='2D position')
 plt.title('Plot of original data - position in x and y')
@@ -83,6 +90,13 @@ for j in range(len(measurement)):
   P_save_update[j,0] = kov_x_dach_matrix[0,0]
   P_save_update[j,1] = kov_x_dach_matrix[1,1]
   P_save_update[j,2] = kov_x_dach_matrix[2,2]
+
+def printx_save_update(x_save_update, data_gps, end="\n"):
+    with open(os.path.join("data", f'x_save_update.txt'), "a") as file:
+      for i in range(len(x_save_update)):
+        file.write(f'{data_gps[i,0]};{x_save_update[i,0]};{x_save_update[i,1]};{x_save_update[i,2]}{end}')
+
+printx_save_update(x_save_update, data_gps)
 
 plt.plot(measurement[:,0], measurement[:,1], 'r-', label='original')
 plt.plot(x_save_update[:,0], x_save_update[:,1], 'g-', label='filtered')
